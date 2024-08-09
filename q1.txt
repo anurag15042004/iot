@@ -1,0 +1,22 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+# Define the solar constant
+Gsc = 1367 # Solar constant in W/m²
+# Generate the time range from June 1, 2024, to May 31, 2025
+start_date = '2024-06-01' # days 214 in this year from 1 June 2024
+end_date = '2025-05-31' # days 151 of the year 31st May 2025
+dates = pd.date_range(start_date, end_date, freq='D') 
+# Calculate the day number (n) for each date
+days = np.arange(1, len(dates) + 1)
+# Calculate the solar radiation intensity using the given formula
+Isc = Gsc * (1 + 0.033 * np.cos(np.deg2rad(360 * days / 365)))
+# Line Plot
+plt.figure(figsize=(12, 6))
+plt.plot(dates, Isc, label='Solar Radiation Intensity')
+plt.xlabel('Date')
+plt.ylabel('Intensity (W/m²)')
+plt.title('Variation of Solar Radiation Intensity from June 2024 to May 2025 - Line Plot')
+plt.legend()
+plt.grid(True)
+plt.show()
